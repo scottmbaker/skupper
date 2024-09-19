@@ -24,6 +24,7 @@ func getSiteId(service *corev1.Service) string {
 }
 
 func (cli *VanClient) TokenClaimCreateFile(ctx context.Context, name string, password []byte, expiry time.Duration, uses int, secretFile string) error {
+	/*
 	policy := NewPolicyValidatorAPI(cli)
 	res, err := policy.IncomingLink()
 	if err != nil {
@@ -32,6 +33,7 @@ func (cli *VanClient) TokenClaimCreateFile(ctx context.Context, name string, pas
 	if !res.Allowed {
 		return res.Err()
 	}
+	*/
 	claim, localOnly, err := cli.TokenClaimCreate(ctx, name, password, expiry, uses)
 	if err != nil {
 		return err
@@ -56,11 +58,13 @@ func (cli *VanClient) TokenClaimCreateFile(ctx context.Context, name string, pas
 }
 
 func (cli *VanClient) TokenClaimCreate(ctx context.Context, name string, password []byte, expiry time.Duration, uses int) (*corev1.Secret, bool, error) {
+	/*
 	policy := NewClusterPolicyValidator(cli)
 	res := policy.ValidateIncomingLink()
 	if !res.Allowed() {
 		return nil, false, fmt.Errorf("incoming links are not allowed")
 	}
+	*/
 
 	siteContext, err := site.GetSiteContext(cli, cli.Namespace, ctx)
 	if err != nil {
