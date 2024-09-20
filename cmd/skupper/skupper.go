@@ -213,6 +213,7 @@ func expose(cli types.VanClientInterface, ctx context.Context, targetType string
 		return "", err
 	}
 
+	/*
 	vanClient, realClient := cli.(*client.VanClient)
 	var policy *client.PolicyAPIClient
 	if realClient {
@@ -225,6 +226,7 @@ func expose(cli types.VanClientInterface, ctx context.Context, targetType string
 			return "", res.Err()
 		}
 	}
+	*/
 	if service == nil {
 		if options.Headless {
 			if targetType != "statefulset" {
@@ -237,6 +239,7 @@ func expose(cli types.VanClientInterface, ctx context.Context, targetType string
 			err = configureHeadlessProxy(service.Headless, &options.ProxyTuning)
 			return service.Address, cli.ServiceInterfaceUpdate(ctx, service)
 		} else {
+			/*
 			if realClient {
 				res, err := policy.Service(serviceName)
 				if err != nil {
@@ -246,6 +249,7 @@ func expose(cli types.VanClientInterface, ctx context.Context, targetType string
 					return "", res.Err()
 				}
 			}
+			*/
 			service = &types.ServiceInterface{
 				Address:                  serviceName,
 				Ports:                    options.Ports,

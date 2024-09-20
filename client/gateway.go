@@ -1077,6 +1077,7 @@ func GatewayDetectTypeIfPresent() (string, error) {
 func (cli *VanClient) GatewayInit(ctx context.Context, gatewayName string, gatewayType string, configFile string) (string, error) {
 	var err error
 
+	/*
 	policy := NewPolicyValidatorAPI(cli)
 	policyRes, err := policy.IncomingLink()
 	if err != nil {
@@ -1085,6 +1086,7 @@ func (cli *VanClient) GatewayInit(ctx context.Context, gatewayName string, gatew
 	if !policyRes.Allowed {
 		return "", policyRes.Err()
 	}
+	*/
 
 	if gatewayType == "" {
 		gatewayType = GatewayServiceType

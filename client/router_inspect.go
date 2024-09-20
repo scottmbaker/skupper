@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"fmt"
 
 	"github.com/skupperproject/skupper/pkg/utils"
 	corev1 "k8s.io/api/core/v1"
@@ -166,5 +167,6 @@ func (cli *VanClient) exec(command []string, namespace string) (*bytes.Buffer, e
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("exec %v\n", command)
 	return kube.ExecCommandInContainer(command, pod.Name, "service-controller", namespace, cli.KubeClient, cli.RestConfig)
 }
